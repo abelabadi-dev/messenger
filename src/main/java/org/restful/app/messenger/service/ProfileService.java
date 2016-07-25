@@ -7,7 +7,7 @@ import java.util.Map;
 import org.restful.app.messenger.database.DatabaseClass;
 import org.restful.app.messenger.model.Profile;
 
-public class ProfileResource {
+public class ProfileService {
 	
 	Map<String,Profile> profiles = DatabaseClass.getProfiles();
 	
@@ -26,14 +26,14 @@ public class ProfileResource {
 	}
 	
 	public Profile updateProfile(Profile profile){
-		if(profile.getId() <= 0){
+		if(profile.getProfileName().isEmpty()){
 			return null;
 		}
 		profiles.put(profile.getProfileName(), profile);
 		return profile;
 	}
 	
-	public void removeMessage(String profileName){
+	public void removeProfile(String profileName){
 		profiles.remove(profileName);
 	}
 }
