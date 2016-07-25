@@ -15,6 +15,8 @@ import org.restful.app.messenger.model.Message;
 import org.restful.app.messenger.service.MessageService;;
 
 @Path("/messages")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class MessageResource {
 	MessageService messageService = new MessageService();
 	@GET
@@ -26,22 +28,17 @@ public class MessageResource {
 	}
 	@GET
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Message getMessage(@PathParam("messageId") long messageId){
 		return messageService.getMessage(messageId);
 	}
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public Message addMessage(Message message){
 		return messageService.addMessage(message);
 	}
 	
 	@PUT
 	@Path("/{messageId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public Message updateMessage(@PathParam("messageId") long id,Message message){
 		message.setId(id);
 		return messageService.updateMessage(message);
