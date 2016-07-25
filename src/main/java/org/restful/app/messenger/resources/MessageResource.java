@@ -2,6 +2,7 @@ package org.restful.app.messenger.resources;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -45,4 +46,12 @@ public class MessageResource {
 		message.setId(id);
 		return messageService.updateMessage(message);
 	}
+	
+	@DELETE
+	@Path("/{messageId}")
+	public void deleteMessage(@PathParam("messageId") long id){
+		messageService.removeMessage(id);
+	}
+	
+	
 }
